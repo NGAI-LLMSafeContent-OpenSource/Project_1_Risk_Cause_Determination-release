@@ -1,0 +1,4 @@
+# CPU contract/smoke environment only. GPU inference uses the module requirements.
+PyYAML==6.0.3
+requests==2.32.5
+tqdm==4.67.1
