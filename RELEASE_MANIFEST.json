@@ -12,7 +12,7 @@
   "files": {
     ".gitattributes": {
       "mode": "100644",
-      "sha256": "09c26361ebcf97c9b2fb02521c178735e7d4510beba9fa58699d2a340a866b5c"
+      "sha256": "a60c89102c4a75ec72bdaadd7a815123bfd5e83188fd71c98482f7701226fb08"
     },
     ".gitignore": {
       "mode": "100755",
@@ -24,7 +24,7 @@
     },
     "README.md": {
       "mode": "100755",
-      "sha256": "832f7ece2546f2a6af17b655c147114ff48595b50d47c8d6bf7d9786610a9891"
+      "sha256": "c18f8a7e9c31be3c10d30ec2d0bb7200e30ed6b616ab84674c1fda3c39b8a386"
     },
     "RELEASE_SCOPE.md": {
       "mode": "100644",

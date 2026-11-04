@@ -1,6 +1,6 @@
 # 课题一：价值溯因（ValueQA Classification）
 
-发布单位：NGAI-LLMSafeContent。版本：1.1。代码许可：Apache-2.0。发布日期：2026-10-27。
+发布单位：NGAI-LLMSafeContent。版本：1.0。代码许可：Apache-2.0。发布日期：2026-11-04。
 
 本包提供Qwen初判、证据复核、确定性接受规则及统一评测runner的实际源码，另含三条经授权公开的自编虚构样例。发布范围不包括完整实验数据、预测结果、模型权重、密钥或缓存。
 
