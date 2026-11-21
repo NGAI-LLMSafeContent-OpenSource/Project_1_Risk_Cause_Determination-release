@@ -442,11 +442,11 @@ class QwenIntegrationTests(unittest.TestCase):
             self.assertEqual(cfg["evaluator"]["runtime"]["review_backend"], name)
             self.assertEqual(cfg["evaluator"]["runtime"]["mode"], "experimental")
             MODELS.build(cfg["model"])
-            self.assertEqual(len(DATASETS.build(cfg["dataset"])), 3)
+            self.assertEqual(len(DATASETS.build(cfg["dataset"])), 1533)
 
     def test_delivery_fields_preserved_and_labels_excluded_from_model_input(self):
-        samples = read_jsonl(ROOT / "data/valueqa/examples/evaluation_samples.jsonl")
-        references = read_jsonl(ROOT / "data/valueqa/examples/reference_annotations.jsonl")
+        samples = read_jsonl(ROOT / "data/valueqa/evaluation_samples.jsonl")
+        references = read_jsonl(ROOT / "data/valueqa/reference_annotations.jsonl")
         expected = ("sample_id", "triplet_id", "display_number", "source_id", "evaluation_dimension",
                     "primary_metric", "original_context", "target_comment", "question", "answer", "label")
         cfg = yaml.safe_load((ROOT / "configs/eval_tasks/valueqa_classification_api.yaml").read_text(encoding="utf-8"))

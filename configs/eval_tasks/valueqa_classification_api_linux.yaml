@@ -1,11 +1,11 @@
-module_profile: value
+﻿module_profile: value
 model:
   type: ValueQAClassificationModel
 dataset:
   type: ValueQAClassificationDataset
   labels_from_references: true
-  path: data/valueqa/examples/evaluation_samples.jsonl
-  references_path: data/valueqa/examples/reference_annotations.jsonl
+  path: data/valueqa/evaluation_samples.jsonl
+  references_path: data/valueqa/reference_annotations.jsonl
 evaluator:
   type: ValueQAClassificationEvaluator
   config_path: ValueQA_Classification/config.current.server.json

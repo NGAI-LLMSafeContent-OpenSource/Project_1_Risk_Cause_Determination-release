@@ -306,7 +306,7 @@ python -B -m unittest discover -s tests -p test_valueqa_classification_integrati
 
 ## 10. 交付版本校验
 
-本目录的 [framework_sha256.json](framework_sha256.json) 是随框架交付的 SHA-256 校验清单，记录当前 23 个核心源代码与配置文件的相对路径、逐文件校验值及清单整体版本标识。当前标识为 `d961cf4e3c2e450349f1f05e836cc03cc2ef160415a93756c343b77509faa5f7`。
+本目录的 [framework_sha256.json](framework_sha256.json) 是随框架交付的 SHA-256 校验清单，记录当前 23 个核心源代码与配置文件的相对路径、逐文件校验值及清单整体版本标识。当前标识为 `a9e0266939f319b4cb57aeb7bcaf7801a8a686c13d695d6be086aa09a69e7510`。
 
 这是固定范围的源代码与配置清单指纹，不是整个仓库或 ZIP 的哈希；不覆盖 README、测试、依赖、校验脚本、模型权重、数据和结果。校验清单自身也不参与逐文件哈希，避免循环引用。
 

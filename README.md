@@ -1,39 +1,72 @@
-# 课题一：价值溯因（ValueQA Classification）
+# DeepSafe / ValueQA价值溯因
 
-发布单位：NGAI-LLMSafeContent。版本：1.0。代码许可：Apache-2.0。发布日期：2026-11-04。
+保留原仓统一评测框架、ValueQA分类与证据复核，以及当前配置和集成入口。
 
-本包提供Qwen初判、证据复核、确定性接受规则及统一评测runner的实际源码，另含三条经授权公开的自编虚构样例。发布范围不包括完整实验数据、预测结果、模型权重、密钥或缓存。
+发布单位：NGAI-LLMSafeContent。发布分支：`release/1.0`；更新日期：2026-11-21；自研代码许可：Apache-2.0，第三方保留原许可。
 
-## CPU最小运行验证
+## 功能
 
-Python 3.10+即可执行发布合同测试；模型推理所需GPU和模型文件另行准备。
+- ValueQA初判、复核、接受规则、检查点与恢复
+- uni_eval模型、数据集、评估器、runner及多任务配置
+- 批量评测、模型路由工具和OpenClaw集成源码
+
+## 安装与快速开始
+
+完整环境依原requirements.txt准备；真实推理另需适配GPU/CUDA、Qwen/LoRA及复核API。不同评测任务的模型与数据遵循各自许可。
+
+从公开仓下载同一发布分支：
+
+```bash
+git clone --branch release/1.0 https://github.com/NGAI-LLMSafeContent-OpenSource/Project_1_Risk_Cause_Determination-release.git
+cd Project_1_Risk_Cause_Determination-release
+python -m venv .venv
+# Linux/macOS
+source .venv/bin/activate
+# Windows PowerShell改用 .venv\Scripts\Activate.ps1
+```
+
+以下命令均以仓库根目录为起点，注释中的外部条件需先准备：
 
 ```bash
 python -m pip install -r requirements.txt
 python ValueQA_Classification/verify_version.py
-python -m unittest discover -s tests -p test_valueqa_classification_integration.py
-python -m unittest ValueQA_Classification.test_framework
 python tools/run.py --help
+# 准备原配置引用的模型、评测数据和API后执行
+python tools/run.py configs/eval_tasks/valueqa_classification_api_linux.yaml
 ```
 
-也可执行`python tools/release_smoke.py`，脚本自动创建临时虚拟环境、安装CPU依赖并运行以上检查。需要基础环境具备venv及pip >=22.3。HTTP测试使用本机受控模拟服务，不调用生产模型API或下载模型。
+## 使用与输出
 
-这些测试验证配置、注册、真实runner/CLI、规则、异常恢复和本机HTTP传输，不是实际Qwen推理或准确率验收；模型调用在合同测试中使用模拟后端。不得将测试通过或人工预期样例文件当成模型实测结果。
+ValueQA说明见 `ValueQA_Classification/README.md`；三条原仓公开示例在 `data/valueqa/examples/`，不会替代原配置指向的完整数据。其他评测任务配置在 `configs/eval_tasks/`；OpenClaw集成在 `integrations/openclaw-deepsafe/`。输出保存在配置的results目录，不计入发布清单。
 
-## 实际模型运行
+## 配置与外部依赖
 
-见ValueQA_Classification/README.md，按说明准备适配GPU/CUDA、依赖、公开基础模型及LoRA，再自行设置真实复核API配置。模型和API均未随仓库提供，发布脚本不会自动申请密钥或下载权重。先检查模型许可与获取条件，再按data/valueqa/examples/README.md执行三条样例。
+所有既有配置与版本指纹保持原样。完整数据、模型和预测缓存未捆绑；指纹涉及CRLF文件时应遵循原.gitattributes检出规则。不能把CPU规则/模拟测试当作真实Qwen性能报告。
 
-默认任务配置均指向data/valueqa/examples/。可使用：
+真实凭据只在自己的运行环境或平台Secrets中配置，不提交.env、用户上传、模型权重或运行结果。原仓文件中的内网服务地址经发布负责人确认按原样保留，使用者应在本地配置自己的可达服务。
+
+## 验证与已知问题
+
+完成对应依赖准备后运行：
 
 ```bash
-python tools/run.py configs/eval_tasks/valueqa_classification_api_linux.yaml --runner.output_dir results/valueqa_examples --evaluator.state_dir results/valueqa_examples/state
+python tools/release_check.py
 ```
 
-上面的实际推理命令需要完成模型和API准备；未具备时不能声称运行成功。输出保留在results/，不应提交发布。expected_predictions.jsonl是人工预期，不能作为模型初判缓存导入。
+检查包含发布文件完整性、原仓文件一致性与声明的最小测试。它不会自动下载模型或申请API，也不代表全部真实业务/准确率验收。保留的原仓错误、未运行项及外部依赖见 [KNOWN_ISSUES.md](KNOWN_ISSUES.md)。
 
-## 来源和版本
+## 发布版本与文件清单
 
-源提交：6a08c8784f828bf98b6271e8a55841782444ea88。配置、集成测试的样例范围及版本指纹在发布输入中作了明确修改；原开发历史不随发布分支导出。框架源码/配置指纹已重新生成，不沿用开发指纹。
+本版本以原开发仓主分支提交 `6a08c8784f828bf98b6271e8a55841782444ea88` 为源。功能实现与对应原文件保持一致；README、许可说明和发布辅助材料单独登记。当前功能的必要源码、配置、界面与运行资源保留，明确弃用的原型、历史结果和开发缓存不捆绑。
 
-完整文件列表、源提交和SHA-256见RELEASE_MANIFEST.json与SHA256SUMS。第三方组件和模型边界见THIRD_PARTY_NOTICES.md；发布范围说明见RELEASE_SCOPE.md。
+- [逐文件发布清单](RELEASE_FILES.md)
+- [原仓文件与Git对象对应关系](SOURCE_ALIGNMENT.json)
+- [完整文件SHA-256及权限](RELEASE_MANIFEST.json)，校验表为SHA256SUMS
+
+校验值按Git存储字节生成；若原.gitattributes规定检出换行转换，请用Git对象或发布检查脚本校验，避免将LF/CRLF误认为源码变化。各公开平台release/1.0使用同一个提交，平台生成的运行分支不属于此发布清单。
+
+## 反馈、贡献与许可证
+
+请通过 [公开仓Issues](https://github.com/NGAI-LLMSafeContent-OpenSource/Project_1_Risk_Cause_Determination-release/issues) 提交复现步骤、环境和日志摘要，勿附真实凭据或用户数据。代码问题由课题维护者在原开发仓处理，发布负责人同步审核后的版本；不要仅修一个平台造成分歧。
+
+自研代码采用[Apache-2.0](LICENSE)。模型、数据集、外部服务和第三方代码遵循各自许可与使用条件，见[第三方说明](THIRD_PARTY_NOTICES.md)。

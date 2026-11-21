@@ -1,0 +1,35 @@
+{
+  "commands": [
+    {
+      "argv": [
+        "{python}",
+        "ValueQA_Classification/verify_version.py"
+      ],
+      "cwd": ".",
+      "name": "upstream-version"
+    },
+    {
+      "argv": [
+        "{python}",
+        "-m",
+        "unittest",
+        "ValueQA_Classification.test_framework.GateTests",
+        "ValueQA_Classification.test_framework.WorkflowTests",
+        "ValueQA_Classification.test_framework.MockHTTPTests"
+      ],
+      "cwd": ".",
+      "name": "rule-http-workflow-tests"
+    },
+    {
+      "argv": [
+        "{python}",
+        "tools/run.py",
+        "--help"
+      ],
+      "cwd": ".",
+      "name": "unified-runner-help"
+    }
+  ],
+  "scope": "Pinned source byte/mode integrity, declared CPU/HTTP/frontend checks. Full model/GPU/data-dependent functionality is not implied. Upstream failures are preserved and separately documented.",
+  "servers": []
+}
