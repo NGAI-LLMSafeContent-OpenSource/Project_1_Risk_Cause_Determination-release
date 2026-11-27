@@ -1,5 +1,13 @@
 {
-  "policy": "Unmodified Git blob bytes for existing non-README runtime files; original defects retained. Release-only docs/configuration/examples are listed separately.",
+  "authorized_address_redactions": {
+    "configs/eval_tasks/mossbench_qwenvl.yaml": {
+      "original_source_git_blob": "ff95906c82067149607cd2fc11fd01c8ff9aa551",
+      "previous_release_git_blob": "ff95906c82067149607cd2fc11fd01c8ff9aa551",
+      "reason": "User-authorized replacement of private deployment addresses with reserved example.invalid host placeholders; ports and paths preserved.",
+      "release_git_blob": "4168b2fb52bd5b8244ea6377a9fa37a65e0336d9"
+    }
+  },
+  "policy": "source_files preserve original pinned Git bytes and modes. authorized_address_redactions explicitly record the approved address-only exceptions; no other business logic edits.",
   "project": "NGAI-LLMSafeContent/Project_1_Risk_Cause_Determination",
   "schema": 1,
   "source_commit": "6a08c8784f828bf98b6271e8a55841782444ea88",
@@ -306,10 +314,6 @@
     },
     "configs/eval_tasks/mossbench.yaml": {
       "git_blob": "18f815ff11b1ccca31fe49dae594a93660a60c65",
-      "mode": "100755"
-    },
-    "configs/eval_tasks/mossbench_qwenvl.yaml": {
-      "git_blob": "ff95906c82067149607cd2fc11fd01c8ff9aa551",
       "mode": "100755"
     },
     "configs/eval_tasks/mssbench_judge_qwen2.5-vl-7b.yaml": {
